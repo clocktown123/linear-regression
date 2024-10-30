@@ -1,0 +1,59 @@
+# Python program to find the 
+# regression line 
+ 
+import matplotlib.pyplot as plt
+import numpy as np
+ 
+# Function to calculate b
+def calculateB(x, y, n):
+   
+    # sum of array x 
+    sx = sum(x)
+ 
+    # sum of array y 
+    sy = sum(y)
+     
+    # for sum of product of x and y 
+    sxsy = 0
+ 
+    # sum of square of x 
+    sx2 = 0
+ 
+    for i in range(n):
+        sxsy += x[i] * y[i]
+        sx2 += x[i] * x[i]
+    b = (n * sxsy - sx * sy)/(n * sx2 - sx * sx)
+    return b
+ 
+# Function to find the 
+# least regression line
+def leastRegLine(X,Y,n):
+     
+    # Finding b 
+    b = calculateB(X, Y, n)
+    meanX = int(sum(X)/n)
+    meanY = int(sum(Y)/n)
+ 
+    # Calculating a
+    a = meanY - b * meanX
+ 
+    # Printing regression line 
+    print("Regression line:")
+    print("Y = ", '%.3f'%a, " + ", '%.3f'%b, "*X", sep="")
+ 
+# Driver code 
+ 
+# Statistical data 
+X = [9, 8, 8, 7, 6 ]
+Y = [9, 8, 7, 5, 6 ]
+n = len(X)
+leastRegLine(X, Y, n)
+
+# define data values
+#x = leastRegLine[0]  # X-axis points
+#y = leastRegLine[1]  # Y-axis points
+
+plt.plot(X, Y)  # Plot the chart
+plt.show()  # display
+ 
+# This code is contributed by avanitrachhadiya2155
